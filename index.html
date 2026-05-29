@@ -18,7 +18,33 @@
             overflow-x: hidden;
         }
 
-        /* Header Navigation */
+        header {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0));
+            padding: 20px 4%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineStream - Stream Premium Content</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0b0c10;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
         header {
             background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0));
             padding: 20px 4%;
@@ -78,7 +104,6 @@
             background-color: #b80710;
         }
 
-        /* Ad Banner Layouts */
         .ad-banner {
             background-color: #1f2833;
             color: #66fcf1;
@@ -99,12 +124,10 @@
             margin-top: 90px;
         }
 
-        /* Main Content Layout */
         .content-container {
             padding: 0 4% 50px 4%;
         }
 
-        /* Hero Showcase Banner */
         .hero-banner {
             height: 450px;
             background: linear-gradient(to right, rgba(11,12,16,0.9) 30%, rgba(11,12,16,0.2)), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1200') no-repeat center center/cover;
@@ -148,7 +171,6 @@
             transform: scale(1.05);
         }
 
-        /* Video Showcase Shelves */
         .shelf-title {
             font-size: 22px;
             margin-bottom: 20px;
@@ -225,7 +247,6 @@
             font-size: 12px;
         }
 
-        /* Video Player Screen Canvas overlay */
         #playerCanvas {
             position: fixed;
             top: 0;
@@ -261,7 +282,6 @@
             border: none;
         }
 
-        /* Ad Gate Screens */
         .ad-overlay {
             position: absolute;
             top: 0;
@@ -322,7 +342,6 @@
             cursor: pointer;
         }
 
-        /* Responsive Mobile Styles */
         @media (max-width: 768px) {
             .top-ad { width: 100%; height: 60px; }
             .hero-banner { height: 300px; padding: 20px; }
@@ -355,14 +374,14 @@
             <div class="hero-content">
                 <h1>Chasing Horizon: Ultimate Journey</h1>
                 <p>Stream high-definition masterpieces perfectly optimized for desktop and high performance environments instantly.</p>
-                <a href="#" class="watch-now" onclick="openPlayer('Chasing Horizon Premium', 'https://www.youtube.com/embed/vX6M9C9-H7M')">Watch Now</a>
+                <a href="#" class="watch-now" onclick="openPlayer('Chasing Horizon Premium', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">Watch Now</a>
             </div>
         </div>
 
         <h2 class="shelf-title">Trending Content</h2>
         <div class="video-grid">
             
-            <div class="video-card" onclick="openPlayer('Cinematic Nature Relaxation', 'https://www.youtube.com/embed/vX6M9C9-H7M')">
+            <div class="video-card" onclick="openPlayer('Cinematic Nature Relaxation', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
                 <div class="thumbnail-container" style="background-image: url('https://images.unsplash.com/photo-1515621061946-eff1c2a352bd?q=80&w=600');">
                     <span class="ad-tag">Ad-Supported</span>
                     <span class="duration">12:44</span>
@@ -373,7 +392,7 @@
                 </div>
             </div>
 
-            <div class="video-card" onclick="openPlayer('Deep Ocean Exploration', 'https://www.youtube.com/embed/vX6M9C9-H7M')">
+            <div class="video-card" onclick="openPlayer('Deep Ocean Exploration', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
                 <div class="thumbnail-container" style="background-image: url('https://images.unsplash.com/photo-1583212292454-1fe6229603b7?q=80&w=600');">
                     <span class="ad-tag">Ad-Supported</span>
                     <span class="duration">15:10</span>
@@ -413,15 +432,12 @@
         const skipBtn = document.getElementById('skipBtn');
 
         function openPlayer(title, videoUrl) {
-            // Target the Iframe element and force autoplay logic
             const iframe = document.getElementById('mainVideoPlayer');
             iframe.src = videoUrl + "?autoplay=1";
 
-            // Bring up the dark room canvas screen overlay 
             playerCanvas.style.display = 'flex';
             adGate.style.display = 'flex';
             
-            // Set up ad countdown block rules
             timeRemaining = 5;
             timerTxt.innerText = timeRemaining;
             skipBtn.classList.remove('active');
@@ -443,18 +459,437 @@
         }
 
         function skipAd() {
-            // Drop out timer cover gate screen
             adGate.style.display = 'none';
         }
 
         function closePlayer() {
-            // Hard kill counters, clear iframe source completely to stop audio
             clearInterval(countdownTimer);
             const iframe = document.getElementById('mainVideoPlayer');
             iframe.src = "";
             playerCanvas.style.display = 'none';
             
-            // Fix ad countdown text layout reset structure for next click
+            const counterDiv = document.querySelector('.ad-counter');
+            counterDiv.innerHTML = 'Video starts after advertisement: <span id="timerTxt">5</span>s';
+            globalThis.timerTxt = document.getElementById('timerTxt');
+        }
+    </script>
+</body>
+</html>
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .logo {
+            color: #e50914;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-menu li a {
+            color: #b3b3b3;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-menu li a:hover {
+            color: #ffffff;
+        }
+
+        .upload-btn {
+            background-color: #e50914;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .upload-btn:hover {
+            background-color: #b80710;
+        }
+
+        .ad-banner {
+            background-color: #1f2833;
+            color: #66fcf1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 1px dashed #45f3ff;
+            margin: 20px auto;
+            border-radius: 4px;
+        }
+
+        .top-ad {
+            width: 728px;
+            height: 90px;
+            margin-top: 90px;
+        }
+
+        .content-container {
+            padding: 0 4% 50px 4%;
+        }
+
+        .hero-banner {
+            height: 450px;
+            background: linear-gradient(to right, rgba(11,12,16,0.9) 30%, rgba(11,12,16,0.2)), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1200') no-repeat center center/cover;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
+        }
+
+        .hero-content {
+            max-width: 500px;
+        }
+
+        .hero-content h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            color: #cccccc;
+            font-size: 16px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .watch-now {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        .watch-now:hover {
+            transform: scale(1.05);
+        }
+
+        .shelf-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .video-card {
+            background-color: #15161c;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .thumbnail-container {
+            width: 100%;
+            height: 140px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .ad-tag {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background-color: #e50914;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 2px;
+            text-transform: uppercase;
+        }
+
+        .duration {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background-color: rgba(0,0,0,0.8);
+            color: white;
+            font-size: 11px;
+            padding: 2px 4px;
+            border-radius: 2px;
+        }
+
+        .video-info {
+            padding: 12px;
+        }
+
+        .video-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .video-meta {
+            color: #aaaaaa;
+            font-size: 12px;
+        }
+
+        #playerCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .player-box {
+            width: 80%;
+            max-width: 900px;
+            aspect-ratio: 16/9;
+            background-color: #111;
+            position: relative;
+            box-shadow: 0 0 50px rgba(229, 9, 20, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .close-player {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .ad-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(11, 12, 16, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .ad-counter {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .ad-counter span {
+            color: #e50914;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .ad-content-mock {
+            width: 300px;
+            height: 250px;
+            background-color: #1f2833;
+            border: 1px solid #e50914;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #66fcf1;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.6);
+        }
+
+        .skip-button {
+            margin-top: 20px;
+            padding: 10px 24px;
+            background-color: rgba(255,255,255,0.2);
+            color: #aaaaaa;
+            border: 1px solid #555;
+            border-radius: 4px;
+            cursor: not-allowed;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .skip-button.active {
+            background-color: #e50914;
+            color: white;
+            border-color: #e50914;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .top-ad { width: 100%; height: 60px; }
+            .hero-banner { height: 300px; padding: 20px; }
+            .hero-content h1 { font-size: 28px; }
+            .player-box { width: 95%; }
+            .logo { font-size: 22px; }
+            .nav-menu { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">CineStream</div>
+            <ul class="nav-menu">
+                <li><a href="#" style="color: white;">Home</a></li>
+                <li><a href="#">Movies</a></li>
+                <li><a href="#">Trending</a></li>
+            </ul>
+            <a href="#" class="upload-btn">Upload</a>
+        </div>
+    </header>
+
+    <div class="ad-banner top-ad">Place Leaderboard Advertisement Banner Here (728x90)</div>
+
+    <div class="content-container">
+        
+        <div class="hero-banner">
+            <div class="hero-content">
+                <h1>Chasing Horizon: Ultimate Journey</h1>
+                <p>Stream high-definition masterpieces perfectly optimized for desktop and high performance environments instantly.</p>
+                <a href="#" class="watch-now" onclick="openPlayer('Chasing Horizon Premium', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">Watch Now</a>
+            </div>
+        </div>
+
+        <h2 class="shelf-title">Trending Content</h2>
+        <div class="video-grid">
+            
+            <div class="video-card" onclick="openPlayer('Cinematic Nature Relaxation', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                <div class="thumbnail-container" style="background-image: url('https://images.unsplash.com/photo-1515621061946-eff1c2a352bd?q=80&w=600');">
+                    <span class="ad-tag">Ad-Supported</span>
+                    <span class="duration">12:44</span>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Cinematic Nature Relaxation</h3>
+                    <div class="video-meta">45K views</div>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="openPlayer('Deep Ocean Exploration', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                <div class="thumbnail-container" style="background-image: url('https://images.unsplash.com/photo-1583212292454-1fe6229603b7?q=80&w=600');">
+                    <span class="ad-tag">Ad-Supported</span>
+                    <span class="duration">15:10</span>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Deep Ocean Exploration</h3>
+                    <div class="video-meta">120K views</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="playerCanvas">
+        <div class="player-box">
+            <button class="close-player" onclick="closePlayer()">✕ Close Player</button>
+            
+            <div id="adGate" class="ad-overlay">
+                <div class="ad-counter">Video starts after advertisement: <span id="timerTxt">5</span>s</div>
+                <div class="ad-content-mock">
+                    Live Ad Block Placement Box<br>
+                    (Earning Money From Views)
+                </div>
+                <button id="skipBtn" class="skip-button" onclick="skipAd()">Please Wait...</button>
+            </div>
+
+            <iframe id="mainVideoPlayer" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="width:100%; height:100%;"></iframe>
+        </div>
+    </div>
+
+    <script>
+        let countdownTimer;
+        let timeRemaining = 5;
+        const playerCanvas = document.getElementById('playerCanvas');
+        const adGate = document.getElementById('adGate');
+        const timerTxt = document.getElementById('timerTxt');
+        const skipBtn = document.getElementById('skipBtn');
+
+        function openPlayer(title, videoUrl) {
+            const iframe = document.getElementById('mainVideoPlayer');
+            iframe.src = videoUrl + "?autoplay=1";
+
+            playerCanvas.style.display = 'flex';
+            adGate.style.display = 'flex';
+            
+            timeRemaining = 5;
+            timerTxt.innerText = timeRemaining;
+            skipBtn.classList.remove('active');
+            skipBtn.innerText = "Please Wait...";
+            skipBtn.disabled = true;
+
+            countdownTimer = setInterval(() => {
+                timeRemaining--;
+                if(timeRemaining <= 0) {
+                    clearInterval(countdownTimer);
+                    timerTxt.parentElement.innerHTML = "Advertisement completed!";
+                    skipBtn.innerText = "Skip Ad & Play Video";
+                    skipBtn.classList.add('active');
+                    skipBtn.disabled = false;
+                } else {
+                    timerTxt.innerText = timeRemaining;
+                }
+            }, 1000);
+        }
+
+        function skipAd() {
+            adGate.style.display = 'none';
+        }
+
+        function closePlayer() {
+            clearInterval(countdownTimer);
+            const iframe = document.getElementById('mainVideoPlayer');
+            iframe.src = "";
+            playerCanvas.style.display = 'none';
+            
             const counterDiv = document.querySelector('.ad-counter');
             counterDiv.innerHTML = 'Video starts after advertisement: <span id="timerTxt">5</span>s';
             globalThis.timerTxt = document.getElementById('timerTxt');
